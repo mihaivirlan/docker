@@ -1,0 +1,35 @@
+- docker create -t -i fedora bash
+- docker ps -a
+
+- docker start container_is
+- docker start -a -i id_container
+
+- docker run -p 8080:80 name_container/container_id
+- docker logs -f container_id
+- netstat -tulpn
+
+
+- sudo docker build . --file Dockerfile --tag myproxy
+- sudo docker run -d -p 30000:80 -e GF_PORT=23000 -e GF_TOKEN=eyJrIjoiWjQ5d3hFdWxBeUJHdEt6SE1ETkFPZ0Fja3RYMkJaQ3kiLCJuIjoiY2FycmVmb3VyMiIsImlkIjoxfQ== myproxy 
+- sudo docker ps
+- sudo docker system prune
+- sudo docker rmi myproxy
+- sudo docker run -it -p 8080:80 -p 23000:23000 nginx:latest
+
+
+
+- docker run -p 81:80 hello-world
+- docker run -p 81:80 -v /home/mihai/docker/src/:/var/www/html hello-world (mount a volume to run a container in folder: /var/www/html; copy the image inside the container)
+
+- docker ps
+- systemctl stop docker
+- netstat -tulpn
+
+- ps auxw | grep docker
+- kill 1247
+- ps auxw | grep docker
+- snap list
+
+- snap remove docker 
+- snap list
+- rm -rf snap/

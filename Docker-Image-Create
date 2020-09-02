@@ -1,0 +1,87 @@
+1. First Image
+	- sudo docker images
+	- mkdir Dockerfiles
+	- cd Dockerfiles/
+	- nano Dockerfile
+		#getting base image ubuntu
+		FROM ubuntu
+
+		MAINTAINER raghav pal <automation.devops@gmail.com>
+
+		RUN apt-get update
+
+		CMD ["echo", "Hello World...! from my first docker image"]
+
+	- sudo docker build -t myimage1:1.0 .
+	- sudo docker images (see id for myimage1)
+	- sudo docker run <image id>
+	- Run a docker container
+			- docker run -d --name web -p 80:8080 nigelpoulton/pluralsight-docker-ci
+			- 192.168.80.26:80 (from browser)
+			- docker ps
+			- docker stop web (stop container)
+			- docker start web
+			- docker image pull ubuntu
+			- docker images
+			- docker image inspect --format '{{.RepoDigests}}' ubuntu
+			- docker container run demo
+
+
+2. Second Image
+	- mkdir Dockerfiles3
+	- cd Dockerfiles3
+	- nano Dockerfile
+		FROM debian:jessie-slim
+
+		RUN apt-get update				&& \
+		    apt-get install -y --no-install-recommends     \
+			cowsay					   \
+			screenfetch				&& \
+		    rm -rf /var/lib/apt/lists/*
+
+		ENV PATH "$PATH:/usr/games"
+
+		CMD ["cowsay", "To improve is to change"]
+
+	- docker image build -t demo .
+	- docker images
+	- docker container run demo
+	- docker container run demo screenfetch -E
+	- nano Dockerfile
+		FROM debian:jessie-slim
+
+		RUN apt-get update				&& \
+		    apt-get install -y --no-install-recommends     \
+			cowsay					   \
+			screenfetch				&& \
+		    rm -rf /var/lib/apt/lists/*
+
+		ENV PATH "$PATH:/usr/games"
+
+		#CMD ["cowsay", "To improve is to change"]
+		ENTRYPOINT ["cowsay"]
+
+	- docker image build -t demo .
+	- docker container run demo
+	- docker container run demo -f tux "If you're going through hell; keep going"
+	- docker container run demo screenfetch -E
+	- nano Dockerfile
+		FROM debian:jessie-slim
+
+		RUN apt-get update				&& \
+		    apt-get install -y --no-install-recommends     \
+			cowsay					   \
+			screenfetch				&& \
+		    rm -rf /var/lib/apt/lists/*
+
+		ENV PATH "$PATH:/usr/games"
+
+		#CMD ["cowsay", "To improve is to change"]
+		CMD ["-f", "tux", "To improve is to change"]
+		ENTRYPOINT ["cowsay"]
+
+	- docker image build -t demo .
+	- docker container run demo "If you're going through hell; keep going"
+	- docker container run demo
+
+

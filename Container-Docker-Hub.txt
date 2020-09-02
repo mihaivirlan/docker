@@ -1,0 +1,26 @@
+- systemctl start docker
+- docker run centos(exemplu de container)
+- docker images
+- docker tag 9f338484d220f mihaivirlan1993/centos:v1
+  	- unde: 9f338484d220f - este exemplu image id
+        	mihaivirlan1993/centos - contul de dockerhub cu repozitoriul creat
+			:v1 - versiunea, tagul repozitoriului
+- docker push mihaivirlan1993/centos:v1		
+- pentru urmatoarele versiuni pe care o sa dorim sa le impingem o sa rulam:
+  	docker tag 9f338484d220f mihaivirlan1993/centos:v2
+  	docker push mihaivirlan1993/centos:v2
+  
+  
+  
+  
+- In cazul in care dorim sa stregem un serviciu de la un swarm docker:
+	sudo service docker stop
+	sudo rm -Rf /var/lib/docker/swarm
+	sudo service docker start
+	
+	
+ docker swarm join \
+ --token SWMTKN-1-56sebkxn1ta7q2ew4gnpr5wo3sb0w4iqni63v9nnkfd4stsc1z-5iou60chpsrxgh5lg0tgauq29 10.0.2.15:2377
+ 
+  docker swarm join \
+  --token SWMTKN-1-1uao5gvvbksvv8cdxcwdeidfp9dl47s9tpjxs6ljee2f6ogluc-14j107ffhjcv1jmfwqihn8ub6 10.0.2.15:2377
